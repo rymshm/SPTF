@@ -3,7 +3,7 @@ body {
 }
 
 #search-form, .form-control {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     margin-top: 25px;
 }
 
@@ -16,12 +16,12 @@ body {
 
 .cover:hover {
     cursor: pointer;
-    -webkit-transform: scale(1.06);
-    transform: scale(1.06);    /* ぼかし */
-    -webkit-filter: blur(4px);
-    filter: blur(4px);
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
     -webkit-transition: .2s ease-in-out;
-	transition: .2s ease-in-out;
+    transition: .2s ease-in-out;
 }
 
 .cover .album-name:hover {
@@ -34,5 +34,5 @@ body {
 }
 
 .cover.playing {
-    border: 5px solid #e45343;
+    border: 5px solid #1DB954;
 }
