@@ -16,7 +16,8 @@ body {
 
 .cover:hover {
     cursor: pointer;
-    /* ぼかし */
+    -webkit-transform: scale(1.06);
+    transform: scale(1.06);    /* ぼかし */
     -webkit-filter: blur(4px);
     filter: blur(4px);
     -webkit-transition: .2s ease-in-out;
