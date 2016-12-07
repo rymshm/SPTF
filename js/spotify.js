@@ -45,7 +45,7 @@ results.addEventListener('click', function (e) {
             }
             fetchTracks(target.getAttribute('data-album-id'), function (data) {
                 var tracks = data.tracks.items;
-                var songNumber = Math.floor(Math.random() * (tracks.length + 1)); // Shuffle Play
+                var songNumber = Math.floor(Math.random() * (tracks.length)); // Shuffle Play
                 audioObject = new Audio(tracks[songNumber].preview_url);
                 audioObject.play();
                 target.classList.add(playingCssClass);
