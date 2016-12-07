@@ -25,7 +25,9 @@
 
         <script id="results-template" type="text/x-handlebars-template">
             {{#each albums.items}}
-                <div style="background-image:url({{images.0.url}})" data-album-id="{{id}}" class="cover"></div>
+                <div style="background-image:url({{images.0.url}})" data-album-id="{{id}}" class="cover">
+                    <p class="album-name">{{name}}</p>
+                </div>
             {{/each}}
         </script>
 
