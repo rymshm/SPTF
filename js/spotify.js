@@ -30,13 +30,17 @@ var searchAlbums = function (query) {
             resultsPlaceholder.innerHTML = loading_template(query);
         },
         success: function (response) {
+              var result;
+              if (response.albums.total > 0) {
+                  result = template(response);
+              } else {
+                  result = notfound_template(response);
+              }
+
             setTimeout(function() {
-                if (response.albums.total > 0) {
-                    resultsPlaceholder.innerHTML = template(response);
-                } else {
-                    resultsPlaceholder.innerHTML = notfound_template(response);
-                }
-            }, 800);
+                resultsPlaceholder.innerHTML = result;
+            }, 300);
+
         }
     });
 };
