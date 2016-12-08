@@ -57,3 +57,22 @@ body {
 .cover.playing {
     border: 5px solid #1DB954;
 }
+
+.loading {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 40px 0 0 -10px;
+    line-height: 20px;
+    font-size: 96px;
+    color: black;
+    text-align: center;
+    background-color: rgba(#000,.7);
+    @include border-radius(10px);
+}
+
+.loading i {
+    color:#1DB954;
+}
