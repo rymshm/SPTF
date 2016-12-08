@@ -76,3 +76,7 @@ body {
 .loading i {
     color:#1DB954;
 }
+
+.play {
+  font-size: 48px;
+}
