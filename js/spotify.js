@@ -36,7 +36,7 @@ var searchAlbums = function (query) {
                 } else {
                     resultsPlaceholder.innerHTML = notfound_template(response);
                 }
-            }, 1250);
+            }, 800);
         }
     });
 };
