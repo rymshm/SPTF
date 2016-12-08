@@ -11,7 +11,7 @@
 
     <body>
         <div class="container">
-            <img src="./assets/spotify.png" alt="spotify logo">
+            <!-- <img src="./assets/spotify.png" alt="spotify logo"> -->
             <form id="search-form">
               <div class="form-group">
                 <input type="text" id="query" value="" class="form-control" placeholder="Type an Artist Name"/>
@@ -25,7 +25,12 @@
 
         <script id="results-template" type="text/x-handlebars-template">
             {{#each albums.items}}
-                <div style="background-image:url({{images.0.url}})" data-album-id="{{id}}" class="cover"></div>
+                <div style="background-image:url({{images.0.url}})" class="cover">
+                    <div class="description">
+                        {{name}}<br/>
+                        <button type="button" class="play-btn"><i class="fa fa-play play" data-album-id="{{id}}"></i></button>
+                    </div>
+                </div>
             {{/each}}
         </script>
 

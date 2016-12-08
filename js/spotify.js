@@ -36,7 +36,8 @@ var searchAlbums = function (query) {
 
 results.addEventListener('click', function (e) {
     var target = e.target;
-    if (target !== null && target.classList.contains('cover')) {
+    console.log(target);
+    if (target !== null && target.classList.contains('play')) {
         if (target.classList.contains(playingCssClass)) {
             audioObject.pause();
         } else {
