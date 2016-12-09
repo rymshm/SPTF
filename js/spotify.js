@@ -59,12 +59,12 @@ results.addEventListener('click', function (e) {
                 var songNumber = Math.floor(Math.random() * (tracks.length)); // Shuffle Play
                 audioObject = new Audio(tracks[songNumber].preview_url);
                 audioObject.play();
-                target.classList.add(playingCssClass);
+                target.classList.add('fa', 'fa-pause', 'playing');
                 audioObject.addEventListener('ended', function () {
-                    target.classList.remove(playingCssClass);
+                    target.classList.remove('fa-pause', 'playing');
                 });
                 audioObject.addEventListener('pause', function () {
-                    target.classList.remove(playingCssClass);
+                    target.classList.remove('fa-pause', 'playing');
                 });
             });
         }
