@@ -3,6 +3,8 @@ var templateSource = document.getElementById('results-template').innerHTML,
     template = Handlebars.compile(templateSource),
     notfound_templateSource = document.getElementById('notfound-template').innerHTML,
     notfound_template = Handlebars.compile(notfound_templateSource),
+    loading_templateSource = document.getElementById('loading-template').innerHTML,
+    loading_template = Handlebars.compile(loading_templateSource),
     resultsPlaceholder = document.getElementById('results'),
     playingCssClass = 'playing',
     audioObject = null;
@@ -24,19 +26,28 @@ var searchAlbums = function (query) {
             type: 'album',
             limit: 30,
         },
+        beforeSend: function() {
+            resultsPlaceholder.innerHTML = loading_template(query);
+        },
         success: function (response) {
-            if (response.albums.total > 0) {
-                resultsPlaceholder.innerHTML = template(response);
-            } else {
-                resultsPlaceholder.innerHTML = notfound_template(response);
-            }
+              var result;
+              if (response.albums.total > 0) {
+                  result = template(response);
+              } else {
+                  result = notfound_template(response);
+              }
+
+            setTimeout(function() {
+                resultsPlaceholder.innerHTML = result;
+            }, 300);
+
         }
     });
 };
 
 results.addEventListener('click', function (e) {
     var target = e.target;
-    if (target !== null && target.classList.contains('cover')) {
+    if (target !== null && target.classList.contains('play')) {
         if (target.classList.contains(playingCssClass)) {
             audioObject.pause();
         } else {
