@@ -58,11 +58,11 @@ body {
     border: 5px solid #1DB954;
 }
 
-.loading {
+.loading, .notfound {
     position: relative;
     top: 50%;
     left: 50%;
-    width: 100px;
+    width: 200px;
     height: 100px;
     margin: 40px 0 0 -10px;
     line-height: 20px;
@@ -75,6 +75,16 @@ body {
 
 .loading i {
     color:#1DB954;
+}
+
+.notfound i {
+    color: gray;
+}
+.notfound p {
+    margin-top: 10px;
+    text-align: center;
+    color: gray;
+    font-size: 24px;
 }
 
 .play {
