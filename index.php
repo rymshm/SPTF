@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>spotify search sample</title>
+        <title>SPTF</title>
         <link rel="stylesheet" href="/css/common.css">
         <link rel="stylesheet" href="//developer.spotify.com/web-api/static/css/cached.css">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
