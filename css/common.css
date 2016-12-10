@@ -61,10 +61,10 @@ body {
 .loading, .notfound {
     position: relative;
     top: 50%;
-    left: 50%;
+    left: 40%;
     width: 200px;
     height: 100px;
-    margin: 40px 0 0 -10px;
+    margin: 40px 0 0;
     line-height: 20px;
     font-size: 96px;
     color: black;
