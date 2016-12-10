@@ -4,9 +4,9 @@
         <meta charset="utf-8">
         <title>spotify search sample</title>
         <link rel="stylesheet" href="/css/common.css">
-        <link rel="stylesheet" href="http://developer.spotify.com/web-api/static/css/cached.css">
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.9/font-awesome-animation.css">
+        <link rel="stylesheet" href="//developer.spotify.com/web-api/static/css/cached.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.9/font-awesome-animation.css">
     </head>
 
     <body>
@@ -49,7 +49,7 @@
 
     </body>
 
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js" charset="utf-8"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js" charset="utf-8"></script>
+    <script src="//code.jquery.com/jquery-1.10.1.min.js" charset="utf-8"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js" charset="utf-8"></script>
     <script src="/js/spotify.js" charset="utf-8"></script>
 </html>
