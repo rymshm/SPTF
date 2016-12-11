@@ -15,46 +15,19 @@ body {
 }
 
 
-
-
 .cover:hover {
     -webkit-transform: scale(1.05);
     transform: scale(1.05);
     cursor: pointer;
-    -webkit-transform: scale(1.05);
-    transform: scale(1.05);
-    -webkit-filter: blur(5px);
-    filter: blur(5px);
-    -webkit-transition: .2s ease-in-out;
-    transition: .2s ease-in-out;
-    z-index: -1;
 }
 
-.cover .description {
-    width: 100%;
-    height: 100%;
-    font-size: 150%;
-    padding-top: 50%;
-    text-align: center;
-    color: white;
-    opacity: 0;
+
+#results {
+  margin-bottom: 96px;
 }
 
-.cover:hover .description {
-    z-index: 10;
-    opacity: 1;
-}
 
-.cover .album-name:hover {
-    opacity: 1;
-}
-.cover .album-name {
-    opacity: 0;
-    width: 300px;
-    height: 300px;
-}
-
-.cover.playing {
+.cover.playing-album {
     border: 5px solid #1DB954;
 }
 
@@ -89,4 +62,34 @@ body {
 
 .play {
   font-size: 42px;
+}
+
+
+.playing {
+  background-color: black;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 61px;
+}
+
+#player {
+  color: white;
+  overflow: hidden;
+  opacity: 0.9;
+}
+
+.player-content {
+  display: inline-block;
+  margin-left: 32px;
+}
+
+.player-content i {
+  font-size: 18px;
+}
+
+.artist-name {
+  font-size: 14px;
+  color: darkgray;
 }

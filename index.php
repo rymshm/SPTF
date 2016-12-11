@@ -5,7 +5,7 @@
         <title>SPTF</title>
         <link rel="stylesheet" href="/css/common.css">
         <link rel="stylesheet" href="//developer.spotify.com/web-api/static/css/cached.css">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.9/font-awesome-animation.css">
     </head>
 
@@ -23,15 +23,20 @@
             </div>
         </div>
 
+        <div id="player">
+            <!-- widgetPlaceholder -->
+        </div>
+
         <script id="results-template" type="text/x-handlebars-template">
             {{#each albums.items}}
-                <div style="background-image:url({{images.0.url}})" class="cover">
-                    <div class="description">
-                        {{name}}<br/>
-                        <i class="fa fa-play play" data-album-id="{{id}}"></i>
-                    </div>
-                </div>
+                <div style="background-image:url({{images.0.url}})" data-album-id="{{id}}" class="cover play"> </div>
             {{/each}}
+        </script>
+
+        <script id="player-template"  type="text/x-handlebars-template">
+          <div class="player-content"><i id="player-control"  class="fa fa-pause" aria-hidden="true"></i></div>
+          <div class="player-content info"><span>{{songName}}</span><br/><span><i class="artist-name">{{artistName}}</i></span></div>
+          <div class="player-content"><a href="{{spotifyURL}}" target="_blank"><i class="fa fa-spotify" aria-hidden="true"></i></a></div>
         </script>
 
         <script id="notfound-template" type="text/x-handlebars-template">
@@ -46,6 +51,7 @@
                 <i class="fa fa-spinner faa-spin animated"></i>
             </div>
         </script>
+
 
     </body>
 

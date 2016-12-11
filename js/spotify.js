@@ -5,8 +5,10 @@ var templateSource = document.getElementById('results-template').innerHTML,
     notfound_template = Handlebars.compile(notfound_templateSource),
     loading_templateSource = document.getElementById('loading-template').innerHTML,
     loading_template = Handlebars.compile(loading_templateSource),
+    widgetTemplate = Handlebars.compile(document.getElementById('player-template').innerHTML),
+    widgetPlaceholder = document.getElementById('player'),
     resultsPlaceholder = document.getElementById('results'),
-    playingCssClass = 'playing',
+    playingCssClass = 'playing-album',
     audioObject = null;
 
 var fetchTracks = function (albumId, callback) {
@@ -57,19 +59,48 @@ results.addEventListener('click', function (e) {
             fetchTracks(target.getAttribute('data-album-id'), function (data) {
                 var tracks = data.tracks.items;
                 var songNumber = Math.floor(Math.random() * (tracks.length)); // Shuffle Play
+                widgetPlaceholder.innerHTML = widgetTemplate({
+                   songName: tracks[songNumber].name,
+                   artistName: tracks[songNumber].artists[0].name,
+                   spotifyURL: data.external_urls.spotify,
+                });
                 audioObject = new Audio(tracks[songNumber].preview_url);
                 audioObject.play();
-                target.classList.add('fa', 'fa-pause', 'playing');
+                target.classList.add(playingCssClass);
+
+                widgetPlaceholder.classList.add('playing')
+                document.getElementById('player-control').addEventListener('click', function(e) {
+                    songControl(e);
+                })
+
                 audioObject.addEventListener('ended', function () {
-                    target.classList.remove('fa-pause', 'playing');
+                    target.classList.remove(playingCssClass);
+                    widgetPlaceholder.classList.remove('playing')
                 });
                 audioObject.addEventListener('pause', function () {
-                    target.classList.remove('fa-pause', 'playing');
+                    // target.classList.remove(playingCssClass);
                 });
+
             });
         }
     }
 });
+
+var songControl = function(e) {
+
+    var btn = e.target;
+
+    if (btn.classList.contains('fa-play')) {
+        btn.classList.remove('fa-play')
+        audioObject.play();
+        btn.classList.add('fa-pause')
+    } else if (btn.classList.contains('fa-pause')) {
+        btn.classList.remove('fa-pause')
+        audioObject.pause();
+        btn.classList.add('fa-play')
+    }
+
+}
 
 document.getElementById('search-form').addEventListener('submit', function (e) {
     e.preventDefault();
