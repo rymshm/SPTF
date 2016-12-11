@@ -34,8 +34,11 @@
         </script>
 
         <script id="player-template"  type="text/x-handlebars-template">
+          <div class="player-content"><i id="player-backward"  class="fa fa-backward" aria-hidden="true"></i></div>
           <div class="player-content"><i id="player-control"  class="fa fa-pause" aria-hidden="true"></i></div>
+          <div class="player-content"><i id="player-forward"  class="fa fa-forward" aria-hidden="true"></i></div>
           <div class="player-content info"><span>{{songName}}</span><br/><span><i class="artist-name">{{artistName}}</i></span></div>
+          <div class="player-content"><input id="volume-control" type="range" name="volume" min="0" max="1.0" step="0.1" /></div>
           <div class="player-content"><a href="{{spotifyURL}}" target="_blank"><i class="fa fa-spotify" aria-hidden="true"></i></a></div>
         </script>
 

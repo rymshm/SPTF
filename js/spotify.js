@@ -11,6 +11,8 @@ var templateSource = document.getElementById('results-template').innerHTML,
     playingCssClass = 'playing-album',
     audioObject = null;
 
+songNumber = 0;
+
 var fetchTracks = function (albumId, callback) {
     $.ajax({
         url: 'https://api.spotify.com/v1/albums/' + albumId,
@@ -47,6 +49,13 @@ var searchAlbums = function (query) {
     });
 };
 
+var play = function(audio, callback) {
+    setTimeout(function() {
+      audio.play();
+      audio.addEventListener('ended', callback);
+    }, 350)
+}
+
 results.addEventListener('click', function (e) {
     var target = e.target;
     if (target !== null && target.classList.contains('play')) {
@@ -57,30 +66,81 @@ results.addEventListener('click', function (e) {
                 audioObject.pause();
             }
             fetchTracks(target.getAttribute('data-album-id'), function (data) {
+
+                songNumber = 0;
+
+                $('#nowplaying').removeClass(playingCssClass).removeAttr('id');
+
                 var tracks = data.tracks.items;
-                var songNumber = Math.floor(Math.random() * (tracks.length)); // Shuffle Play
-                widgetPlaceholder.innerHTML = widgetTemplate({
-                   songName: tracks[songNumber].name,
-                   artistName: tracks[songNumber].artists[0].name,
-                   spotifyURL: data.external_urls.spotify,
-                });
-                audioObject = new Audio(tracks[songNumber].preview_url);
-                audioObject.play();
                 target.classList.add(playingCssClass);
+                $(target).attr('id', 'nowplaying');
 
-                widgetPlaceholder.classList.add('playing')
-                document.getElementById('player-control').addEventListener('click', function(e) {
-                    songControl(e);
-                })
+                function recursive_play() {
 
-                audioObject.addEventListener('ended', function () {
-                    target.classList.remove(playingCssClass);
-                    widgetPlaceholder.classList.remove('playing')
-                });
-                audioObject.addEventListener('pause', function () {
-                    // target.classList.remove(playingCssClass);
-                });
+                  // Player Info
+                  widgetPlaceholder.innerHTML = widgetTemplate({
+                     songName: tracks[songNumber].name,
+                     artistName: tracks[songNumber].artists[0].name,
+                     spotifyURL: data.external_urls.spotify,
+                  });
 
+                  // Player appear
+                  widgetPlaceholder.classList.add('playing')
+                  document.getElementById('player-control').addEventListener('click', function(e) {
+                      songControl(e);
+                  });
+
+                  // Volume Control
+                  document.getElementById('volume-control').addEventListener('input', function(e) {
+                      volumeControl(this.value);
+                  });
+
+                  // Forward Event
+                  document.getElementById('player-forward').addEventListener('click', function(e) {
+                    audioObject.pause();
+                    if (songNumber < tracks.length - 1) {
+                      songNumber++;
+                      recursive_play();
+                    } else {
+                      target.classList.remove(playingCssClass);
+                      widgetPlaceholder.classList.remove('playing')
+                      widgetPlaceholder.innerHTML = '';
+                      songNumber = 0;
+                    }
+                  });
+
+                  // Backword Event
+                  document.getElementById('player-backward').addEventListener('click', function(e) {
+                    if (songNumber > 0) {
+                      audioObject.pause();
+                      songNumber--;
+                      recursive_play();
+                    }
+                  });
+
+
+                  // Manage Queue
+                  if (songNumber + 1 === tracks.length) { //queue end
+
+                    play(audioObject = new Audio(tracks[songNumber].preview_url), function() {
+                      target.classList.remove(playingCssClass);
+                      widgetPlaceholder.classList.remove('playing')
+                      widgetPlaceholder.innerHTML = '';
+                      songNumber = 0;
+                    });
+
+                  } else {
+
+                    play(audioObject = new Audio(tracks[songNumber].preview_url), function() {
+
+                      target.classList.add(playingCssClass);
+                      songNumber++;
+                      recursive_play();
+                    });
+                  }
+                }
+
+                recursive_play();
             });
         }
     }
@@ -99,7 +159,10 @@ var songControl = function(e) {
         audioObject.pause();
         btn.classList.add('fa-play')
     }
+}
 
+var volumeControl = function(volume) {
+  audioObject.volume = volume;
 }
 
 document.getElementById('search-form').addEventListener('submit', function (e) {

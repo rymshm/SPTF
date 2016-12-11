@@ -12,6 +12,7 @@ body {
     height: 300px;
     display: inline-block;
     background-size: cover;
+    position: absolute;;
 }
 
 
@@ -19,6 +20,7 @@ body {
     -webkit-transform: scale(1.05);
     transform: scale(1.05);
     cursor: pointer;
+    z-index: 10;
 }
 
 
@@ -78,6 +80,7 @@ body {
   color: white;
   overflow: hidden;
   opacity: 0.9;
+  z-index: 99;
 }
 
 .player-content {
@@ -86,6 +89,7 @@ body {
 }
 
 .player-content i {
+  cursor: pointer;
   font-size: 18px;
 }
 
