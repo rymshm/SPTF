@@ -69,6 +69,7 @@ results.addEventListener('click', function (e) {
 
                 songNumber = 0;
 
+
                 $('#nowplaying').removeClass(playingCssClass).removeAttr('id');
 
                 var tracks = data.tracks.items;
@@ -76,6 +77,8 @@ results.addEventListener('click', function (e) {
                 $(target).attr('id', 'nowplaying');
 
                 function recursive_play() {
+
+                audioObject = null;
 
                   // Player Info
                   widgetPlaceholder.innerHTML = widgetTemplate({
