@@ -49,10 +49,10 @@ var searchAlbums = function (query) {
     });
 };
 
-var play = function(audio, callback) {
+var play = function(callback) {
     setTimeout(function() {
-      audio.play();
-      audio.addEventListener('ended', callback);
+      audioObject.play();
+      audioObject.addEventListener('ended', callback);
     }, 350)
 }
 
@@ -69,7 +69,6 @@ results.addEventListener('click', function (e) {
 
                 songNumber = 0;
 
-
                 $('#nowplaying').removeClass(playingCssClass).removeAttr('id');
 
                 var tracks = data.tracks.items;
@@ -78,7 +77,7 @@ results.addEventListener('click', function (e) {
 
                 function recursive_play() {
 
-                audioObject = null;
+                  audioObject = null;
 
                   // Player Info
                   widgetPlaceholder.innerHTML = widgetTemplate({
@@ -124,8 +123,8 @@ results.addEventListener('click', function (e) {
 
                   // Manage Queue
                   if (songNumber + 1 === tracks.length) { //queue end
-
-                    play(audioObject = new Audio(tracks[songNumber].preview_url), function() {
+                    audioObject = new Audio(tracks[songNumber].preview_url);
+                    play(function() {
                       target.classList.remove(playingCssClass);
                       widgetPlaceholder.classList.remove('playing')
                       widgetPlaceholder.innerHTML = '';
@@ -133,9 +132,8 @@ results.addEventListener('click', function (e) {
                     });
 
                   } else {
-
-                    play(audioObject = new Audio(tracks[songNumber].preview_url), function() {
-
+                    audioObject = new Audio(tracks[songNumber].preview_url);
+                    play(function() {
                       target.classList.add(playingCssClass);
                       songNumber++;
                       recursive_play();
