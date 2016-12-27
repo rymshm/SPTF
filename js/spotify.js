@@ -11,7 +11,7 @@ var templateSource = document.getElementById('results-template').innerHTML,
     playingCssClass = 'playing-album',
     audioObject = null;
 
-songNumber = 0;
+    songNumber = 0;
 
 var fetchTracks = function (albumId, callback) {
     $.ajax({
@@ -41,10 +41,7 @@ var searchAlbums = function (query) {
                   result = notfound_template(response);
               }
 
-            setTimeout(function() {
-                resultsPlaceholder.innerHTML = result;
-            }, 300);
-
+            resultsPlaceholder.innerHTML = result;
         }
     });
 };
@@ -57,7 +54,9 @@ var play = function(callback) {
 }
 
 results.addEventListener('click', function (e) {
+
     var target = e.target;
+
     if (target !== null && target.classList.contains('play')) {
         if (target.classList.contains(playingCssClass)) {
             audioObject.pause();
