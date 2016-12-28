@@ -1,16 +1,15 @@
-// find template and compile it
-var templateSource = document.getElementById('results-template').innerHTML,
-    template = Handlebars.compile(templateSource),
-    notfound_templateSource = document.getElementById('notfound-template').innerHTML,
-    notfound_template = Handlebars.compile(notfound_templateSource),
-    loading_templateSource = document.getElementById('loading-template').innerHTML,
-    loading_template = Handlebars.compile(loading_templateSource),
-    widgetTemplate = Handlebars.compile(document.getElementById('player-template').innerHTML),
-    widgetPlaceholder = document.getElementById('player'),
-    resultsPlaceholder = document.getElementById('results'),
+var templateSource           = document.getElementById('results-template').innerHTML,
+    template                 = Handlebars.compile(templateSource),
+    notfound_templateSource  = document.getElementById('notfound-template').innerHTML,
+    notfound_template        = Handlebars.compile(notfound_templateSource),
+    loading_templateSource   = document.getElementById('loading-template').innerHTML,
+    loading_template         = Handlebars.compile(loading_templateSource),
+    widgetTemplate           = Handlebars.compile(document.getElementById('player-template').innerHTML),
+    widgetPlaceholder        = document.getElementById('player'),
+    resultsPlaceholder       = document.getElementById('results'),
+
     playingCssClass = 'playing-album',
     audioObject = null;
-
     songNumber = 0;
 
 var fetchTracks = function (albumId, callback) {
@@ -58,21 +57,24 @@ results.addEventListener('click', function (e) {
     var target = e.target;
 
     if (target !== null && target.classList.contains('play')) {
+
         if (target.classList.contains(playingCssClass)) {
             audioObject.pause();
         } else {
+
             if (audioObject) {
                 audioObject.pause();
             }
+
             fetchTracks(target.getAttribute('data-album-id'), function (data) {
 
                 songNumber = 0;
 
                 $('#nowplaying').removeClass(playingCssClass).removeAttr('id');
-
-                var tracks = data.tracks.items;
                 target.classList.add(playingCssClass);
                 $(target).attr('id', 'nowplaying');
+
+                var tracks = data.tracks.items;
 
                 function recursive_play() {
 
