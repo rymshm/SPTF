@@ -27,6 +27,7 @@ var searchAlbums = function (query) {
         data: {
             q: query,
             type: 'album',
+            market: 'JP',
             limit: 30,
         },
         beforeSend: function() {
